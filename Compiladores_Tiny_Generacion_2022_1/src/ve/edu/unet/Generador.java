@@ -82,7 +82,7 @@ public class Generador {
 		/*Si el hijo de extrema izquierda tiene hermano a la derecha lo genero tambien*/
 		if(nodo.TieneHermano())
 			generar(nodo.getHermanoDerecha());
-	}else
+	}else	
 		System.out.println("���ERROR: por favor fije la tabla de simbolos a usar antes de generar codigo objeto!!!");
 }
 
@@ -126,29 +126,63 @@ public class Generador {
 			generar(n.getPrueba());
 			UtGen.emitirRM_Abs("JEQ", UtGen.AC, localidadSaltoInicio, "repeat: jmp hacia el inicio del cuerpo");
 		if(UtGen.debug)	UtGen.emitirComentario("<- repeat");
-	}		
+	}
+	
+	private static void calcularDireccion(NodoBase nodo) {
+        NodoBase index = null;
+        int direccion = 0;
+        if (nodo instanceof NodoLeer) {
+            NodoLeer n = (NodoLeer) nodo;
+            direccion = tablaSimbolos.getDireccion(n.getIdentificador());
+            index = n.getIndice();
+        } else if (nodo instanceof NodoAsignacion) {
+            NodoAsignacion n = (NodoAsignacion) nodo;
+            direccion = tablaSimbolos.getDireccion(n.getIdentificador());
+            index = n.getIndice();
+        } else if (nodo instanceof NodoIdentificador) {
+            NodoIdentificador n = (NodoIdentificador) nodo;
+            direccion = tablaSimbolos.getDireccion(n.getNombre());
+            index = n.getIndice();
+        } else if (nodo instanceof NodoValor) {
+            return;
+
+        }
+        generar(index);
+        UtGen.emitirRM("ST", UtGen.AC, desplazamientoTmp--, UtGen.MP, "op: push offset");
+        UtGen.emitirRM("LD", UtGen.OFFSET, ++desplazamientoTmp, UtGen.MP, "op: pop valor a OFFSET");
+        UtGen.emitirRM("LDC", UtGen.DIR, direccion, 0, "cargar direccion en BASE: " + direccion);
+        UtGen.emitirRO("ADD", UtGen.DIR, UtGen.DIR, UtGen.OFFSET, "op: +");
+    }
 	
 	private static void generarAsignacion(NodoBase nodo){
 		NodoAsignacion n = (NodoAsignacion)nodo;
-		int direccion;
+		
 		if(UtGen.debug)	UtGen.emitirComentario("-> asignacion");		
 		/* Genero el codigo para la expresion a la derecha de la asignacion */
 		generar(n.getExpresion());
-		/* Ahora almaceno el valor resultante */
-		direccion = tablaSimbolos.getDireccion(n.getIdentificador());
-		UtGen.emitirRM("ST", UtGen.AC, direccion, UtGen.GP, "asignacion: almaceno el valor para el id "+n.getIdentificador());
+		/* Ahora almaceno el valor resultante */		
+		
+		UtGen.emitirRM("ST", UtGen.AC, desplazamientoTmp--, UtGen.MP, "op: push valor calculado");
+        calcularDireccion(nodo);
+        UtGen.emitirRM("LD", UtGen.AC, ++desplazamientoTmp, UtGen.MP, "op: pop o cargo de la pila el valor calculado en AC");
+        UtGen.emitirRM("ST", UtGen.AC, 0, UtGen.DIR, "asignacion: almaceno el valor para el id " + n.getIdentificador());
 		if(UtGen.debug)	UtGen.emitirComentario("<- asignacion");
 	}
 	
-	private static void generarLeer(NodoBase nodo){
-		NodoLeer n = (NodoLeer)nodo;
-		int direccion;
-		if(UtGen.debug)	UtGen.emitirComentario("-> leer");
-		UtGen.emitirRO("IN", UtGen.AC, 0, 0, "leer: lee un valor entero ");
-		direccion = tablaSimbolos.getDireccion(n.getIdentificador());
-		UtGen.emitirRM("ST", UtGen.AC, direccion, UtGen.GP, "leer: almaceno el valor entero leido en el id "+n.getIdentificador());
-		if(UtGen.debug)	UtGen.emitirComentario("<- leer");
-	}
+	private static void generarLeer(NodoBase nodo) {
+        NodoLeer n = (NodoLeer) nodo;
+        if (UtGen.debug) {
+            UtGen.emitirComentario("-> leer");
+        }
+        UtGen.emitirRO("IN", UtGen.AC, 0, 0, "leer: lee un valor entero ");
+        UtGen.emitirRM("ST", UtGen.AC, desplazamientoTmp--, UtGen.MP, "op: push valor leido");
+        calcularDireccion(nodo);
+        UtGen.emitirRM("LD", UtGen.AC, ++desplazamientoTmp, UtGen.MP, "op: pop o cargo de la pila el valor leido en AC");
+        UtGen.emitirRM("ST", UtGen.AC, 0, UtGen.DIR, "asignacion: almaceno el valor para el id " + n.getIdentificador());
+        if (UtGen.debug) {
+            UtGen.emitirComentario("<- leer");
+        }
+    }
 	
 	private static void generarEscribir(NodoBase nodo){
 		NodoEscribir n = (NodoEscribir)nodo;
@@ -167,14 +201,13 @@ public class Generador {
     	if(UtGen.debug)	UtGen.emitirComentario("<- constante");
 	}
 	
-	private static void generarIdentificador(NodoBase nodo){
-		NodoIdentificador n = (NodoIdentificador)nodo;
-		int direccion;
-		if(UtGen.debug)	UtGen.emitirComentario("-> identificador");
-		direccion = tablaSimbolos.getDireccion(n.getNombre());
-		UtGen.emitirRM("LD", UtGen.AC, direccion, UtGen.GP, "cargar valor de identificador: "+n.getNombre());
-		if(UtGen.debug)	UtGen.emitirComentario("-> identificador");
-	}
+	private static void generarIdentificador(NodoBase nodo) {
+        NodoIdentificador n = (NodoIdentificador) nodo;
+        if (UtGen.debug) {UtGen.emitirComentario("-> identificador");}
+        calcularDireccion(nodo);
+        UtGen.emitirRM("LD", UtGen.AC, 0, UtGen.DIR, "cargar valor de identificador: " + n.getNombre());
+        if (UtGen.debug) {UtGen.emitirComentario("-> identificador");}
+    }
 
 	private static void generarOperacion(NodoBase nodo){
 		NodoOperacion n = (NodoOperacion) nodo;

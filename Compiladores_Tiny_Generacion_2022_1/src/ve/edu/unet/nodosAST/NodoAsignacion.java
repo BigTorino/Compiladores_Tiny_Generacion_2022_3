@@ -9,12 +9,14 @@ public class NodoAsignacion extends NodoBase {
 		super();
 		this.identificador = identificador;
 		this.expresion = null;
+		this.indice = new NodoValor(0);
 	}
 
 	public NodoAsignacion(String identificador, NodoBase expresion) {
 		super();
 		this.identificador = identificador;
 		this.expresion = expresion;
+		this.indice = new NodoValor(0);
 	}
 
 	public NodoAsignacion(String identificador, NodoBase expresion, NodoBase indice) {
@@ -38,6 +40,14 @@ public class NodoAsignacion extends NodoBase {
 
 	public void setExpresion(NodoBase expresion) {
 		this.expresion = expresion;
+	}
+
+	public NodoBase getIndice() {
+		return indice;
+	}
+
+	public void setIndice(NodoBase indice) {
+		this.indice = indice;
 	}
 
 }

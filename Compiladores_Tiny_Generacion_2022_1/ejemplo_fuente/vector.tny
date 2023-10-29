@@ -1,3 +1,16 @@
 dec x[5];
 dec y[3];
-dec z[1]
+dec z[1];
+x[1]:=5;
+write x[1];
+read x[3];
+write x[1];
+write x[3];
+y[2]:=x[3]+x[1];
+write y[2];
+r:=1;
+write r;
+z:=r+y[2];
+write z;
+m:=z+r;
+write m
