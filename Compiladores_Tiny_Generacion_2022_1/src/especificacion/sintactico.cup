@@ -49,6 +49,7 @@ action code {:
 
 /* Simbolos Terminales */
 
+terminal DEC;
 terminal IF;
 terminal THEN;
 terminal ELSE;
@@ -153,7 +154,7 @@ repeat_stmt ::= REPEAT stmt_seq:cuerpo UNTIL exp:prueba	{: if(debug) System.out.
 							:}
 		;
 
-dec_stmt 	::= ID:variable LBRACK NUM:tamano RBRACK {: if(debug) System.out.println("\t regla declarar vector"); 
+dec_stmt 	::= DEC ID:variable LBRACK NUM:tamano RBRACK {: if(debug) System.out.println("\t regla declarar vector"); 
 							RESULT = new NodoDeclaracion(variable.toString(),Integer.parseInt(tamano));
 							:}
 		;
@@ -170,6 +171,15 @@ assign_stmt ::= ID:variable 	{: if(debug) System.out.println("\t regla 6 parte d
 					System.out.println("Ocurrio error en cup # 0001");
 					}
 					:}
+			|ID:variable LBRACK exp:indice RBRACK ASSIGN exp:ex{: if(debug) System.out.println("\t regla asignacion vector"); 
+					System.out.println("Asignando a variable con indice");
+					if(variable!=null)
+					RESULT = new NodoAsignacion(variable.toString(),ex,indice);
+					else{
+					RESULT = null;
+					System.out.println("Ocurrio error en cup # asignacion");
+					}
+                    :}
 		;
 
 read_stmt   ::= READ ID:variable	{: if(debug) System.out.println("\t regla 7"); 

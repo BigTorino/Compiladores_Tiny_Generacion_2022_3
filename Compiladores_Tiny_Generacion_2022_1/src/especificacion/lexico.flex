@@ -53,6 +53,11 @@ identificador	= {letra}+
 nuevalinea		= \n | \n\r | \r\n
 espacio		= [ \t]+
 %%
+
+"dec"            {	if(debug) System.out.println("token DEC");
+			return sf.newSymbol("DEC",sym.DEC);
+			}
+
 "if"            {	if(debug) System.out.println("token IF");
 			return sf.newSymbol("IF",sym.IF);
 			}
