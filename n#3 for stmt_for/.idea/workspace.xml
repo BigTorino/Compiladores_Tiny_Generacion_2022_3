@@ -1,38 +1,105 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="SELECTIVE" />
+  </component>
   <component name="ChangeListManager">
-    <list default="true" id="7a45d066-9979-4160-ba52-10de5d921657" name="Changes" comment="" />
+    <list default="true" id="4a75e039-2f34-47d6-9aae-acc3b5df0574" name="Changes" comment="" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
-  <component name="ProjectColorInfo"><![CDATA[{
-  "associatedIndex": 3
-}]]></component>
-  <component name="ProjectId" id="2XPvUAp3zeXpefwfWgNu3YO64Uw" />
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="Class" />
+      </list>
+    </option>
+  </component>
+  <component name="MarkdownSettingsMigration">
+    <option name="stateVersion" value="1" />
+  </component>
+  <component name="ProjectColorInfo">{
+  &quot;associatedIndex&quot;: 6
+}</component>
+  <component name="ProjectId" id="2Ocfu7wCS8akcoOnTfCXIf5h8j9" />
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "RunOnceActivity.OpenProjectViewOnStart": "true",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "WebServerToolWindowFactoryState": "false",
-    "vue.rearranger.settings.migration": "true"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
+    &quot;last_opened_file_path&quot;: &quot;N:/universidad/Compiladores_Tiny_Generacion_2022_3&quot;,
+    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
+    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
+    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;reference.settingsdialog.project.grazie&quot;,
+    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   }
-}]]></component>
+}</component>
+  <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\Development\UNET\Compiladores_Tiny_Generacion_2022_3\Compiladores_Tiny_Generacion_2022_1\ejemplo_generado" />
+      <recent name="C:\Development\UNET\Compiladores_Tiny_Generacion_2022_3\Compiladores_Tiny_Generacion_2022_1\ejemplo_fuente" />
+    </key>
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="N:\universidad\Compiladores_Tiny_Generacion_2022_3\Compiladores_Tiny_Generacion_2022_1\src\ve\edu\unet" />
+    </key>
+  </component>
+  <component name="RunManager">
+    <configuration name="CompiladorTiny" type="Application" factoryName="Application">
+      <option name="ALTERNATIVE_JRE_PATH" value="$USER_HOME$/.jdks/corretto-11.0.21" />
+      <option name="MAIN_CLASS_NAME" value="ve.edu.unet.parser" />
+      <module name="Compiladores_Tiny_Generacion_2022_3" />
+      <option name="PROGRAM_PARAMETERS" value="N:\universidad\Compiladores_Tiny_Generacion_2022_3\Compiladores_Tiny_Generacion_2022_1\ejemplo_fuente\for.tny" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+  </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">
-      <changelist id="7a45d066-9979-4160-ba52-10de5d921657" name="Changes" comment="" />
-      <created>1698543545845</created>
+      <changelist id="4a75e039-2f34-47d6-9aae-acc3b5df0574" name="Changes" comment="" />
+      <created>1681865010697</created>
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
-      <updated>1698543545845</updated>
-      <workItem from="1698543551161" duration="24000" />
+      <updated>1681865010697</updated>
+      <workItem from="1681865011724" duration="3012000" />
+      <workItem from="1681948616844" duration="595000" />
+      <workItem from="1693351602099" duration="2992000" />
+      <workItem from="1693399655063" duration="631000" />
+      <workItem from="1698194008117" duration="425000" />
+      <workItem from="1698522312646" duration="15699000" />
+      <workItem from="1698542797369" duration="16000" />
+      <workItem from="1698576170239" duration="1804000" />
     </task>
     <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="3" />
+  </component>
+  <component name="UnknownFeatures">
+    <option featureType="com.intellij.fileTypeFactory" implementationName="*.tm" />
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <line-breakpoint enabled="true" type="java-method">
+          <url>file://$PROJECT_DIR$/Compiladores_Tiny_Generacion_2022_1/src/ve/edu/unet/TablaSimbolos.java</url>
+          <line>57</line>
+          <properties class="ve.edu.unet.TablaSimbolos" method="InsertarSimbolo">
+            <option name="EMULATED" value="true" />
+            <option name="WATCH_EXIT" value="false" />
+          </properties>
+          <option name="timeStamp" value="5" />
+        </line-breakpoint>
+      </breakpoints>
+    </breakpoint-manager>
   </component>
 </project>

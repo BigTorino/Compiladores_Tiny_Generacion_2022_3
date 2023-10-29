@@ -1,3 +1,0 @@
-for x:=2; x<5; x:=x+1; then
- write x
-endfor
