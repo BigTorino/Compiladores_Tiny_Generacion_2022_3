@@ -32,6 +32,10 @@ public class UtGen {
 
 	/* Defino al registro[1] como el acumulador 2 */
 	public static int  AC1=1;
+	/* definidos para calcular direciones */
+	public static int DIR = 2;
+    public static int OFFSET = 3;
+    
 	
 	
 	public static void emitirComentario(String c){

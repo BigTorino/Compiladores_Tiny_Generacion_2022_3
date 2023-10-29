@@ -190,7 +190,16 @@ read_stmt   ::= READ ID:variable	{: if(debug) System.out.println("\t regla 7");
 					RESULT = null;
 					System.out.println("Ocurrio error en cup # 0002");
 					}
-					:}
+			:}
+			|READ ID:variable LBRACK exp:ex RBRACK{: if(debug) System.out.println("\t regla leer vector"); 
+					System.out.println("Leyendo Variable");
+					if(variable!=null)
+					RESULT = new NodoLeer(variable.toString(),ex);
+					else{
+					RESULT = null;
+					System.out.println("Ocurrio error en cup # 0002");
+					}                                
+			:}
 		;
 
 write_stmt  ::= WRITE exp:ex	{: if(debug) System.out.println("\t regla 8"); 
@@ -251,6 +260,9 @@ factor      ::= LPAREN exp:ex RPAREN	{: if(debug) System.out.println("\t regla 1
 						RESULT = null;
 						System.out.println("Ocurrio error en cup # 0005");
 					}
+					:}
+		| ID:variable LBRACK exp:indice RBRACK	{: if(debug) System.out.println("\t regla factor variable con indice");                                                        
+							RESULT = new NodoIdentificador(variable.toString(),indice);
 					:}
 		| error	{: if(debug) System.out.println("\t regla 12d"); 
 				System.out.println("Ocurrio error en cup # 0003");
