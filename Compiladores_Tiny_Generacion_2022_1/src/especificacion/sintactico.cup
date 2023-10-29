@@ -8,8 +8,8 @@ import java.io.InputStreamReader;
 parser code {:
 
 /***********
-SymbolFactory es una nueva caracteristica que ha sido añadida a las version 11a de cup, la cual facilita la implementacion de clases Symbol personalizadas
-, esto debido a que dicha clase no provee mucha información de contexto que podria ser util para el analisis semantico o ayudar en la construccion del AST
+SymbolFactory es una nueva caracteristica que ha sido aï¿½adida a las version 11a de cup, la cual facilita la implementacion de clases Symbol personalizadas
+, esto debido a que dicha clase no provee mucha informaciï¿½n de contexto que podria ser util para el analisis semantico o ayudar en la construccion del AST
 Mas informacion en: http//4thmouse.com/index.php/2007/02/15/using-custom-symbols-in-cup/
 ***********/
 	public static void main(String args[]) throws Exception {
@@ -68,6 +68,8 @@ terminal TIMES;
 terminal OVER;
 terminal LPAREN;
 terminal RPAREN;
+terminal LBRACK;
+terminal RBRACK;
 terminal SEMI;
 
 /* Simbolos No Terminales */
@@ -76,6 +78,7 @@ non terminal NodoBase stmt_seq;
 non terminal NodoBase stmt;
 non terminal NodoBase if_stmt;
 non terminal NodoBase repeat_stmt;
+non terminal NodoBase dec_stmt;
 non terminal NodoBase assign_stmt;
 non terminal NodoBase read_stmt;
 non terminal NodoBase write_stmt;
@@ -119,6 +122,9 @@ stmt        ::= if_stmt:sif	{: if(debug) System.out.println("\t regla 3a");
             | repeat_stmt:srep	{: if(debug) System.out.println("\t regla 3b"); 
 						RESULT=srep;
 						:}
+			| dec_stmt:sdec	{: if(debug) System.out.println("\t regla declaracion"); 
+						RESULT=sdec;
+						:}
             | assign_stmt:sasi	{: if(debug) System.out.println("\t regla 3c"); 
 						RESULT=sasi;
 						:}
@@ -144,6 +150,11 @@ if_stmt     ::= IF exp:ex THEN stmt_seq:pthen END	{: if(debug) System.out.printl
 
 repeat_stmt ::= REPEAT stmt_seq:cuerpo UNTIL exp:prueba	{: if(debug) System.out.println("\t regla 5"); 
 							RESULT = new NodoRepeat(cuerpo,prueba);
+							:}
+		;
+
+dec_stmt 	::= ID:variable LBRACK NUM:tamano RBRACK {: if(debug) System.out.println("\t regla declarar vector"); 
+							RESULT = new NodoDeclaracion(variable.toString(),Integer.parseInt(tamano));
 							:}
 		;
 
