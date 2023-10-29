@@ -56,6 +56,27 @@ espacio		= [ \t]+
 "if"            {	if(debug) System.out.println("token IF");
 			return sf.newSymbol("IF",sym.IF);
 			}
+">"            {
+    if(debug) System.out.println("token >");
+    return sf.newSymbol("GT",sym.GT);
+ }
+ ">="  {
+    if(debug) System.out.println("token >=");
+    return sf.newSymbol("GTEQUAL",sym.GTEQUAL);
+ }
+"<="            {
+    if(debug) System.out.println("token <=");
+    return sf.newSymbol("LESSEQUAL",sym.LESSEQUAL);
+}
+
+"and"            {
+            if(debug) System.out.println("token and");
+          return sf.newSymbol("AND",sym.AND);
+}
+"or"            {
+    if(debug) System.out.println("token or");
+    return sf.newSymbol("OR",sym.OR);
+}
 "then"          { if(debug) System.out.println("token THEN");
 			return sf.newSymbol("THEN",sym.THEN);
 			}

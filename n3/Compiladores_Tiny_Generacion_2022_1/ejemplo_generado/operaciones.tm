@@ -1,6 +1,3 @@
-*      Compilacion TINY para el codigo objeto TM
-*      Archivo: NOMBRE_ARREGLAR
-*      Preludio estandar:
 0:       LD       6,0(0)      cargar la maxima direccion desde la localidad 0
 1:       ST       0,0(0)      limpio el registro de la localidad 0
 *      -> for
@@ -53,7 +50,7 @@
 *      <- Operacion: mas
 25:       ST       0,0(5)      asignacion: almaceno el valor para el id y
 *      <- asignacion
-26:       LDA       7,-23(7)      if: jmp hacia el final
-13:       JEQ       0,13(7)      if: jmp hacia el final
+26:       LDA       7,-23(7)      if: jmp hasta el final
+13:       JEQ       0,13(7)      if: jmp hasta el final
 *      Fin de la ejecucion.
-27:       HALT       0,0,0
+27:       HALT       0,0,0   

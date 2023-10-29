@@ -71,6 +71,11 @@ terminal RPAREN;
 terminal SEMI;
 terminal FOR;
 terminal ENDFOR;
+terminal GT;
+terminal AND;
+terminal OR;
+terminal GTEQUAL;
+terminal LESSEQUAL;
 
 /* Simbolos No Terminales */
 non terminal program;
@@ -91,6 +96,8 @@ non terminal NodoBase for_stmt;
 precedence left PLUS;
 precedence left MINUS;
 precedence left TIMES;
+precedence left AND;
+precedence left OR;
 
 
 /* REGLAS GRAMATICALES */
@@ -99,7 +106,7 @@ program     ::= stmt_seq:s	{: if(debug) System.out.println("\t regla 1");
 					:}
 		;
 
-stmt_seq    ::= stmt_seq:ini SEMI stmt:sent	{: if(debug) System.out.println("\t regla 2a"); 
+stmt_seq    ::= stmt_seq:ini stmt:sent	{: if(debug) System.out.println("\t regla 2a");
 						NodoBase hijoActual = ini;
 						if(hijoActual !=null){
 							while(hijoActual.TieneHermano()){
@@ -116,19 +123,19 @@ stmt_seq    ::= stmt_seq:ini SEMI stmt:sent	{: if(debug) System.out.println("\t 
 				:}
 		;
 
-stmt        ::= if_stmt:sif	{: if(debug) System.out.println("\t regla 3a"); 
+stmt        ::= if_stmt:sif	{: if(debug) System.out.println("\t regla 3a");
 					RESULT=sif;
 					:}
-            | repeat_stmt:srep	{: if(debug) System.out.println("\t regla 3b"); 
+            | repeat_stmt:srep	{: if(debug) System.out.println("\t regla 3b");
 						RESULT=srep;
 						:}
-            | assign_stmt:sasi	{: if(debug) System.out.println("\t regla 3c"); 
+            | assign_stmt:sasi SEMI	{: if(debug) System.out.println("\t regla 3c");
 						RESULT=sasi;
 						:}
-            | read_stmt:slec	{: if(debug) System.out.println("\t regla 3d"); 
+            | read_stmt:slec SEMI	{: if(debug) System.out.println("\t regla 3d");
 					RESULT=slec;
 					:}
-            | write_stmt:sesc	{: if(debug) System.out.println("\t regla 3e"); 
+            | write_stmt:sesc SEMI	{: if(debug) System.out.println("\t regla 3e");
 					RESULT=sesc;
 					:}
             | for_stmt:sfor {: if(debug) System.out.println("\t regla 3h");
@@ -183,15 +190,30 @@ write_stmt  ::= WRITE exp:ex	{: if(debug) System.out.println("\t regla 8");
 					:}
 		;
 
-exp         ::= simple_exp:exI LT simple_exp:exD	{: if(debug) System.out.println("\t regla 9a"); 
+exp         ::= simple_exp:exI LT simple_exp:exD	{: if(debug) System.out.println("\t regla 9a");
 								RESULT = new NodoOperacion(exI,tipoOp.menor,exD);
-								:} 
-		| simple_exp:exI EQ simple_exp:exD	{: if(debug) System.out.println("\t regla 9b"); 
+								:}
+		| simple_exp:exI EQ simple_exp:exD	{: if(debug) System.out.println("\t regla 9b");
 							RESULT = new NodoOperacion(exI,tipoOp.igual,exD);
 							:}
-		| simple_exp:ex	{: if(debug) System.out.println("\t regla 9c"); 
+		| simple_exp:ex	{: if(debug) System.out.println("\t regla 9c");
 					RESULT = ex;
 					:}
+		| simple_exp:exI GT simple_exp:exD   {: if(debug) System.out.println("\t regla 9b");
+		        RESULT = new NodoOperacion(exI,tipoOp.mayor,exD);
+                     :}
+        | simple_exp:exI GTEQUAL simple_exp:exD  {: if(debug) System.out.println("\t regla 9b");
+                 RESULT = new NodoOperacion(exI,tipoOp.mayorIgual,exD);
+                                                             :}
+        | simple_exp:exI LESSEQUAL simple_exp:exD    {: if(debug) System.out.println("\t regla 9b");
+            RESULT = new NodoOperacion(exI,tipoOp.menorIgual,exD);
+                                        :}
+        | exp:exI AND exp:exD    {: if(debug) System.out.println("\t regla 9b");
+            RESULT = new NodoOperacion(exI,tipoOp.and,exD);
+                                           :}
+        | exp:exI OR exp:exD {: if(debug) System.out.println("\t regla 9b");
+            RESULT = new NodoOperacion(exI,tipoOp.or,exD);
+                                          :}
 		;
 
 simple_exp  ::= simple_exp:exI PLUS term:exD	{: if(debug) System.out.println("\t regla 10a"); 

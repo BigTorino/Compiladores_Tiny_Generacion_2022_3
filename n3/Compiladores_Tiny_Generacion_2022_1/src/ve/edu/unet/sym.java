@@ -9,16 +9,21 @@ package ve.edu.unet;
 public class sym {
   /* terminals */
   public static final int TIMES = 17;
+  public static final int AND = 25;
   public static final int READ = 8;
   public static final int OVER = 18;
   public static final int LT = 14;
   public static final int ELSE = 4;
   public static final int PLUS = 15;
+  public static final int OR = 26;
   public static final int RPAREN = 20;
   public static final int THEN = 3;
   public static final int SEMI = 21;
+  public static final int GTEQUAL = 27;
   public static final int END = 5;
   public static final int IF = 2;
+  public static final int LESSEQUAL = 28;
+  public static final int GT = 24;
   public static final int LPAREN = 19;
   public static final int WRITE = 9;
   public static final int ID = 10;
@@ -56,7 +61,12 @@ public class sym {
   "RPAREN",
   "SEMI",
   "FOR",
-  "ENDFOR"
+  "ENDFOR",
+  "GT",
+  "AND",
+  "OR",
+  "GTEQUAL",
+  "LESSEQUAL"
   };
 }
 
