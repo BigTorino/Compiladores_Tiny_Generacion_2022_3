@@ -1,0 +1,41 @@
+terminal Integer NUMERO;
+terminal IGUAL, RESTA, SIGNO, LPARENT, RPARENT, SUMA, DIVISION, MULTIPLICACION, POTENCIA;
+non terminal sesion;
+non terminal Integer ecuacion;
+non terminal Integer expresion;
+non terminal String opbinaria;
+precedence left RESTA,SUMA;
+precedence left MULTIPLICACION, DIVISION;
+precedence left SIGNO;
+precedence right POTENCIA;
+sesion ::= ecuacion | ecuacion sesion;
+ecuacion ::= expresion:r IGUAL {: System.out.println("Finalizo con resultado="+r);  :}
+             ;
+expresion ::=  NUMERO:n
+               {:RESULT=n;:}
+             | expresion:e1 opbinaria:op expresion:e2
+              {:
+                   if(op.equals("+")){
+                    RESULT = e1 + e2;
+                   }else if(op.equals("-")){
+                   RESULT = e1 - e2;
+                   }else if(op.equals("/")){
+                   RESULT = e1 / e2;
+                   }else if(op.equals("*")){
+                   RESULT = e1 * e2;
+                   }else if(op.equals("^")){
+                   RESULT = Math.pow(e1,e2);
+                   }
+               :}
+             | RESTA expresion:e {:RESULT=e*-1;:}
+               %prec SIGNO
+
+             | LPARENT expresion:e RPARENT
+             {:RESULT=e;:}
+             ;
+opbinaria ::=   SUMA {: RESULT="+"; :}
+              | RESTA {: RESULT="-"; :}
+              | DIVISION {: RESULT="/"; :}
+              | MULTIPLICACION {: RESULT="*"; :}
+              | POTENCIA {: RESULT="^"; :}
+              ;

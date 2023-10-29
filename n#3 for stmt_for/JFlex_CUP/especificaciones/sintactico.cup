@@ -1,0 +1,54 @@
+import java_cup.runtime.Symbol;
+import java.lang.Math.*;
+//terminales y no terminales
+terminal String SUMA,RESTA,MULTI,DIVI;
+terminal Integer DIGITO;
+terminal POTENCIA;
+terminal RESULTADO;
+    terminal PIZQ, PDER, NEGATIVO;
+    non terminal sesion;
+    non terminal NodoBase ecuacion;
+    non terminal NodoBase expresion;
+    non terminal String opbinaria;
+
+//Precedencia
+precedence left SUMA, RESTA;
+precedence left MULTI, DIVI;
+precedence left NEGATIVO;
+precedence right POTENCIA;
+
+//gramatica
+
+sesion ::= ecuacion | ecuacion sesion;
+
+ecuacion ::= expresion:e RESULTADO
+{:
+   RESULT = e;
+   System.out.println("AST Finalizado");
+:}
+;
+
+expresion ::=   DIGITO:num {: RESULT = new NodoDigito(num); :}
+              | expresion:euno opbinaria:op expresion:edos
+                {:
+                    switch(op) {
+                        case("R"): RESULT = new NodoOperacion("R",euno,edos); break;
+                        case("S"): RESULT = new NodoOperacion("S",euno,edos); break;
+                        case("M"): RESULT = new NodoOperacion("M",euno,edos); break;
+                        case("D"): RESULT = new NodoOperacion("D",euno,edos); break;
+                        case("P"): RESULT = new NodoOperacion("P",euno,edos); break;
+                    }
+                :}
+              | RESTA expresion:e {: RESULT = new NodoNegativo(e); :}
+                 %prec NEGATIVO
+
+              | PIZQ expresion:e PDER
+                {: RESULT = e; :}
+              ;
+
+opbinaria ::=     SUMA {: RESULT=new String("S"); :}
+                | RESTA {: RESULT=new String("R"); :}
+                | MULTI {: RESULT=new String("M"); :}
+                | DIVI {: RESULT=new String("D"); :}
+                | POTENCIA {: RESULT=new String("P"); :}
+                ;

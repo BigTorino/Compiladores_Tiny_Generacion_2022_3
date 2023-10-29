@@ -1,0 +1,11 @@
+<component name="libraryTable">
+  <library name="especificacion4">
+    <CLASSES>
+      <root url="jar://$PROJECT_DIR$/Compiladores_CUP_2022_1/out/production/Compiladores_Lexico_2022_1/especificacion/java-cup-11b-runtime.jar!/" />
+      <root url="jar://$PROJECT_DIR$/Compiladores_CUP_2022_1/out/production/Compiladores_Lexico_2022_1/especificacion/jflex-full-1.8.2.jar!/" />
+      <root url="jar://$PROJECT_DIR$/Compiladores_CUP_2022_1/out/production/Compiladores_Lexico_2022_1/especificacion/java-cup-11b.jar!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES />
+  </library>
+</component>

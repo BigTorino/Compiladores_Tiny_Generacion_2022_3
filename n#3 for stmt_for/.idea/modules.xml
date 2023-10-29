@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ProjectModuleManager">
+    <modules>
+      <module fileurl="file://$PROJECT_DIR$/Compiladores_CUP_2022_1/Compiladores_CUP_2022_1.iml" filepath="$PROJECT_DIR$/Compiladores_CUP_2022_1/Compiladores_CUP_2022_1.iml" />
+      <module fileurl="file://$PROJECT_DIR$/Compiladores_Tiny_Generacion_2022_3/Compiladores_Tiny_Generacion_2022_3.iml" filepath="$PROJECT_DIR$/Compiladores_Tiny_Generacion_2022_3/Compiladores_Tiny_Generacion_2022_3.iml" />
+      <module fileurl="file://$PROJECT_DIR$/JFlex_CUP/JFlex_CUP.iml" filepath="$PROJECT_DIR$/JFlex_CUP/JFlex_CUP.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/UNET Compiladores Octubre 2023.iml" filepath="$PROJECT_DIR$/.idea/UNET Compiladores Octubre 2023.iml" />
+    </modules>
+  </component>
+</project>
