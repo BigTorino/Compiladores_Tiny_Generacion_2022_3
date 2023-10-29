@@ -8,6 +8,7 @@ package ve.edu.unet;
 /** CUP generated class containing symbol constants. */
 public class sym {
   /* terminals */
+  public static final int RBRACK = 22;
   public static final int TIMES = 17;
   public static final int READ = 8;
   public static final int OVER = 18;
@@ -16,7 +17,8 @@ public class sym {
   public static final int PLUS = 15;
   public static final int RPAREN = 20;
   public static final int THEN = 3;
-  public static final int SEMI = 21;
+  public static final int SEMI = 23;
+  public static final int LBRACK = 21;
   public static final int END = 5;
   public static final int IF = 2;
   public static final int LPAREN = 19;
@@ -52,6 +54,8 @@ public class sym {
   "OVER",
   "LPAREN",
   "RPAREN",
+  "LBRACK",
+  "RBRACK",
   "SEMI"
   };
 }
