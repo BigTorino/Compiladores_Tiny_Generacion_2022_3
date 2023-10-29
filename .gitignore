@@ -1,2 +1,5 @@
 /Compiladores_Tiny_Generacion_2022_1/out/
 *.class
+Compiladores_Tiny_Generacion_2022_1/src/ve/edu/unet/Lexico.java
+Compiladores_Tiny_Generacion_2022_1/src/ve/edu/unet/parser.java
+Compiladores_Tiny_Generacion_2022_1/src/ve/edu/unet/sym.java

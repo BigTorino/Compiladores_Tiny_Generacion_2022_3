@@ -179,7 +179,7 @@ assign_stmt ::= ID:variable 	{: if(debug) System.out.println("\t regla 6 parte d
 					RESULT = null;
 					System.out.println("Ocurrio error en cup # asignacion");
 					}
-                                    :}
+                    :}
 		;
 
 read_stmt   ::= READ ID:variable	{: if(debug) System.out.println("\t regla 7"); 
