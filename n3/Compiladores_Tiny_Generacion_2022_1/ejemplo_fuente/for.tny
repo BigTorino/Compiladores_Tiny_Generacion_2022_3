@@ -1,3 +1,0 @@
-for y:=1; y >= 1; y:=y+1; then
-write y*3;
-endfor

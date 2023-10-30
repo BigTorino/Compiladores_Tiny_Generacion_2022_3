@@ -1,0 +1,21 @@
+for y:=1; y<5; y:=y+1; then
+write y*3;
+endfor
+int tmp = 0;
+
+for(int i = 0; i < arreglo.Count; i++)
+ for(int j = 0; j < arreglo.Count - 1; j++)
+ {
+    if(arreglo[j] < arreglo[j + 1])
+    {
+       tmp = arreglo[j];
+       arreglo[j] = arreglo[j + 1];
+       arreglo[j + 1] = tmp;
+    }
+ }
+
+repeat j<5;
+    then
+    read x[j]
+    j:=j+1;
+until j=5;
