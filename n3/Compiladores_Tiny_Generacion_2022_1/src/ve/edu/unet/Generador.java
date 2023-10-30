@@ -251,15 +251,20 @@ public class Generador {
 		int initLeapHome = 0;
 		int initLeapEndHome = 0;
 		int initLeapCurrentHome= 0;
+
 		if(UtGen.debug) UtGen.emitirComentario("-> for");
 
+
+		/* asigna la varible contador*/
 		generar(n.getAsignaP());
 
 		initLeapHome = UtGen.emitirSalto(0);
+		/* asigna la condicion para repetir el codigo*/
 		generar(n.getPrueba());
 		initLeapEndHome = UtGen.emitirSalto(1);
-
+		/* genera el cuerpo del for */
 		generar(n.getCuerpo());
+		/* ingrementa la variable contador */
 		generar(n.getAsignaT());
 		UtGen.emitirRM_Abs("LDA", UtGen.PC, initLeapHome, "if: jmp hasta el final");
 		initLeapCurrentHome = UtGen.emitirSalto(0);
